@@ -1,0 +1,29 @@
+.container-text {
+  width: 300px;
+  margin: 0 auto;
+  display: table;
+}
+
+.container-text .input {
+  margin-top: 30px;
+}
+
+.container-text .button {
+  float: right;
+}
+
+.container-exibition-text {
+  text-align: center;
+  margin: 50px 0 0 0;
+  font-size: 30px;
+}
+
+
+.container-exibition-text span {
+    background-color: #3f51b5;
+    margin: 1px;
+    color: #fff;
+    padding: 0px 6px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 9px -3px #000;
+}

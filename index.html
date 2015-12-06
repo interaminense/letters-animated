@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letter Animated</title>
+  <link rel="stylesheet" href="/bower_components/material-design-lite/material.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="css/style.css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="css/animate.css" media="screen" charset="utf-8">
+</head>
+<body ng-controller="myController">
+
+
+  <div class="container-text">
+
+    <div class="input">
+      <div class="class-of-input mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input ng-model="textToAnimate" class="mdl-textfield__input" type="text" id="text" maxlength="30">
+        <label class="mdl-textfield__label" for="text">insert your text here</label>
+      </div>
+    </div>
+
+    <div class="radios">
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+        <input ng-model="animationStyle" type="radio" id="option-1" class="mdl-radio__button" name="options" value="style1">
+        <span class="mdl-radio__label">Animation 1</span>
+      </label>
+      <span>&nbsp;</span>
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+        <input ng-model="animationStyle" type="radio" id="option-2" class="mdl-radio__button" name="options" value="style2">
+        <span class="mdl-radio__label">Animation 2</span>
+      </label>
+      <span>&nbsp;</span>
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+        <input ng-model="animationStyle" type="radio" id="option-3" class="mdl-radio__button" name="options" value="style3">
+        <span class="mdl-radio__label">Animation 3</span>
+      </label>
+      <span>&nbsp;</span>
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+        <input ng-model="animationStyle" type="radio" id="option-4" class="mdl-radio__button" name="options" value="style4">
+        <span class="mdl-radio__label">Animation 4</span>
+      </label>
+    </div>
+
+    <div class="button">
+      <button ng-disabled="textToAnimate == undefined || animationStyle == false" ng-click="animate(textToAnimate)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        animate
+      </button>
+    </div>
+
+  </div>
+
+  <div ng-class="animationStyle" class="container-exibition-text is-animate">
+
+  </div>
+
+  <code>
+    {{ text | json }}
+  </code>
+
+  <script src="/bower_components/material-design-lite/material.min.js"></script>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/script-animate.js"></script>
+</body>
+</html>
