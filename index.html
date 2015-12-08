@@ -7,68 +7,83 @@
   <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="css/style.css" media="screen" charset="utf-8">
-  <link rel="stylesheet" href="css/animate.css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="css/animations.css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="css/animate-complement.css" media="screen" charset="utf-8">
 </head>
-<body ng-controller="myController">
+<body>
 
+  <controller ng-controller="mainCtrl">
 
-  <div class="container-text">
+    <div class="container-text">
 
-    <div class="input">
-      <div class="class-of-input mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input ng-model="textToAnimate" class="mdl-textfield__input" type="text" id="text" maxlength="30">
-        <label class="mdl-textfield__label" for="text">insert your text here</label>
+      <div class="input">
+        <div class="class-of-input mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input ng-model="textToAnimate" class="mdl-textfield__input" type="text" id="text" maxlength="30">
+          <label class="mdl-textfield__label" for="text">insert your text here</label>
+        </div>
       </div>
+
+      <!-- Left aligned menu below button -->
+      <button id="demo-menu-lower-left" class="mdl-button mdl-button--colored mdl-js-ripple-effect mdl-button--raised mdl-js-button">
+        select style <span ng-show="animationStyle != false">(<i>{{animationStyle}}</i>)</span>
+      </button>
+
+      <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
+        <li class="mdl-menu__item" ng-class="{'mdl-button--accent' : animationStyle == 'style1'}" ng-click="showCode = false; animationStyle = 'style1'">Animation style 1</li>
+        <li class="mdl-menu__item" ng-class="{'mdl-button--accent' : animationStyle == 'style2'}" ng-click="showCode = false; animationStyle = 'style2'">Animation style 2</li>
+        <li class="mdl-menu__item" ng-class="{'mdl-button--accent' : animationStyle == 'style3'}" ng-click="showCode = false; animationStyle = 'style3'">Animation style 3</li>
+        <li class="mdl-menu__item" ng-class="{'mdl-button--accent' : animationStyle == 'style4'}" ng-click="showCode = false; animationStyle = 'style4'">Animation style 4</li>
+      </ul>
+
+      <div class="button">
+        <button ng-disabled="textToAnimate == undefined || animationStyle == false" ng-click="animate(textToAnimate)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          animate
+        </button>
+      </div>
+
     </div>
 
-    <div class="radios">
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-        <input ng-model="animationStyle" type="radio" id="option-1" class="mdl-radio__button" name="options" value="style1">
-        <span class="mdl-radio__label">Animation 1</span>
-      </label>
-      <span>&nbsp;</span>
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-        <input ng-model="animationStyle" type="radio" id="option-2" class="mdl-radio__button" name="options" value="style2">
-        <span class="mdl-radio__label">Animation 2</span>
-      </label>
-      <span>&nbsp;</span>
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-        <input ng-model="animationStyle" type="radio" id="option-3" class="mdl-radio__button" name="options" value="style3">
-        <span class="mdl-radio__label">Animation 3</span>
-      </label>
-      <span>&nbsp;</span>
-      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
-        <input ng-model="animationStyle" type="radio" id="option-4" class="mdl-radio__button" name="options" value="style4">
-        <span class="mdl-radio__label">Animation 4</span>
-      </label>
+    <div ng-class="animationStyle" class="container-exibition-text is-animate text-center">
+
     </div>
 
-    <div class="button">
-      <button ng-disabled="textToAnimate == undefined || animationStyle == false" ng-click="animate(textToAnimate)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        animate
+    <div class="button text-center btn-generate-code" ng-show="showGenerate">
+      <button ng-hide="showCode" ng-click="generateCode(animationStyle)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        generate code
       </button>
     </div>
 
-  </div>
+    <div ng-show="showCode" class="centered-content">
 
-  <div ng-class="animationStyle" class="container-exibition-text is-animate text-center">
+      <!-- show code link on <head /> -->
+      <pre ng-show="showCode" ng-bind-html="printHead" class="code"></pre>
 
-  </div>
+      <!-- show code html generate -->
+      <pre ng-show="showCode" ng-bind-html="printHtml" class="code"></pre>
 
-  <div class="button text-center btn-generate-code" ng-show="showGenerate">
-    <button ng-hide="showCode" ng-click="showCode = true" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      generate code
-    </button>
-  </div>
+      <!--show code css generate -->
+      <pre ng-show="showCode" ng-bind-html="printCss" class="code"></pre>
 
-  <pre ng-show="showCode" ng-bind-html="print" class="code">
+      <!-- Colored raised button -->
+      <div class="text-right">
+        <button class="text-right mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+          download animations.css
+        </button>
+      </div>
 
-  </pre>
+    </div>
 
+  </controller>
+
+  <!-- Material Design Lite -->
   <script src="bower_components/material-design-lite/material.min.js"></script>
+  <!-- Angular JS -->
   <script src="bower_components/angular/angular.min.js"></script>
   <!-- angular sanitize -->
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <!-- scripts -->
   <script type="text/javascript" src="js/script-animate.js"></script>
+  <script type="text/javascript" src="js/templates.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,10 @@
+.is-animate span {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+
+.style1 span { animation-name: style1; }
+.style2 span { animation-name: style2; }
+.style3 span { animation-name: style3; }
+.style4 span { animation-name: style4; }
