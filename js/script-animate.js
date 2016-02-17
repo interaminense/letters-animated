@@ -18,7 +18,7 @@ app.controller('mainCtrl', ['$scope', function($scope){
     angular.element(containerExibitionText).html("");
 
     for (var i = 0; i < textToAnimate.length; i++) {
-      angular.element(containerExibitionText).append('<span>' + textToAnimate[i] + '</span>');
+      angular.element(containerExibitionText).append('<div>' + textToAnimate[i] + '</div>');
     }
 
     $scope.textToAnimate = undefined;
@@ -50,18 +50,20 @@ app.controller('mainCtrl', ['$scope', function($scope){
     $scope.printHtml += "&lt;div class='is-animate " + animationStyle + "'&gt;<br />";
 
     for (var i = 0; i < $scope.stockText.length; i++) {
-      $scope.printHtml += "  &lt;span&gt;" + $scope.stockText[i] + "&lt;/span&gt;<br />";
+      $scope.printHtml += "  &lt;div&gt;" + $scope.stockText[i] + "&lt;/div&gt;<br />";
     }
 
     $scope.printHtml += "&lt;/div&gt;";
 
     $scope.templates = {
-      "templateDefault" : ".is-animate span {<br />  animation-duration: 1s;<br />  animation-fill-mode: both;<br />  animation-iteration-count: infinite;<br />}<br /><br />",
-      "templateStyle1"  : ".is-animate.style1 span { animation-name: style1; }<br /><br />",
-      "templateStyle2"  : ".is-animate.style2 span { animation-name: style2; }<br /><br />",
-      "templateStyle3"  : ".is-animate.style3 span { animation-name: style3; }<br /><br />",
-      "templateStyle4"  : ".is-animate.style4 span { animation-name: style4; }<br /><br />",
+      "templateDefault" : ".is-animate > div {<br />  animation-duration: 1s;<br />  animation-fill-mode: both;<br />  animation-iteration-count: infinite;<br />}<br /><br />",
+      "templateStyle1"  : ".is-animate.style1 > div { animation-name: style1; }<br /><br />",
+      "templateStyle2"  : ".is-animate.style2 > div { animation-name: style2; }<br /><br />",
+      "templateStyle3"  : ".is-animate.style3 > div { animation-name: style3; }<br /><br />",
+      "templateStyle4"  : ".is-animate.style4 > div { animation-name: style4; }<br /><br />",
     };
+
+    $scope.printCss += "&lt;style type='text/css'&gt;<br /><br />";
 
     switch (animationStyle) {
       case "style1":
@@ -81,14 +83,15 @@ app.controller('mainCtrl', ['$scope', function($scope){
     $scope.printCss += $scope.templates.templateDefault;
 
     for (var i = 0; i < $scope.stockText.length; i++) {
-      console.log($scope.stockText.length);
       if(i >= 0 && i <= 9)
-      $scope.printCss += ".is-animate span:nth-child(" + ( i + 1 ) + ") { animation-delay: 0." + i + "s }<br />";
+      $scope.printCss += ".is-animate > div:nth-child(" + ( i + 1 ) + ") { animation-delay: 0." + i + "s }<br />";
       if(i >= 10 && i <= 19)
-        $scope.printCss += ".is-animate span:nth-child(" + ( i + 1 ) + ") { animation-delay: 1." + ( i - 10 ) + "s }<br />";
+        $scope.printCss += ".is-animate > div:nth-child(" + ( i + 1 ) + ") { animation-delay: 1." + ( i - 10 ) + "s }<br />";
       if(i >= 20 && i <= 29)
-        $scope.printCss += ".is-animatespan:nth-child(" + ( i + 1 ) + ") { animation-delay: 2." + ( i - 20 ) + "s }<br />";
+        $scope.printCss += ".is-animate > div:nth-child(" + ( i + 1 ) + ") { animation-delay: 2." + ( i - 20 ) + "s }<br />";
     }
+
+    $scope.printCss += "<br />&lt;/style&gt;";
 
   };
 

@@ -1,10 +1,10 @@
-.is-animate span {
+.style1 > div { animation-name: style1; }
+.style2 > div { animation-name: style2; }
+.style3 > div { animation-name: style3; }
+.style4 > div { animation-name: style4; }
+
+.is-animate > div {
   animation-duration: 1s;
-  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
-
-.style1 span { animation-name: style1; }
-.style2 span { animation-name: style2; }
-.style3 span { animation-name: style3; }
-.style4 span { animation-name: style4; }

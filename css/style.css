@@ -25,13 +25,14 @@
   font-size: 30px;
 }
 
-.container-exibition-text span {
+.container-exibition-text > div {
   background-color: #3f51b5;
   margin: 1px;
   color: #fff;
-  padding: 0px 6px;
+  padding: 12px;
   border-radius: 4px;
   box-shadow: 1px 1px 9px -3px #000;
+  display: inline-block;
 }
 
 .centered-content {
